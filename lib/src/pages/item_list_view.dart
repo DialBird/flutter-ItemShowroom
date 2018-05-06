@@ -27,8 +27,8 @@ class ItemListView extends StatelessWidget {
         ),
         body: new TabBarView(
           children: <Widget>[
-            new ItemDisplayView(),
-            new Icon(Icons.directions_transit),
+            new ItemDisplayView('shirts'),
+            new ItemDisplayView('shoes'),
             new Icon(Icons.directions_bike),
             new Icon(Icons.directions_transit),
             new Icon(Icons.directions_bike),

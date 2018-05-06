@@ -6,12 +6,19 @@ import 'dart:convert';
 import 'package:item_showroom/src/models.dart';
 
 class ItemDisplayView extends StatefulWidget {
+  final type;
+
+  ItemDisplayView(this.type);
+
   @override
-  _ItemDisplayViewState createState() => new _ItemDisplayViewState();
+  _ItemDisplayViewState createState() => new _ItemDisplayViewState(type);
 }
 
 class _ItemDisplayViewState extends State<ItemDisplayView> {
+  final type;
   List<Item> _items = [];
+
+  _ItemDisplayViewState(this.type);
 
   @override
   void initState() {
@@ -21,7 +28,7 @@ class _ItemDisplayViewState extends State<ItemDisplayView> {
 
   _getItems() async {
     http.Response response = await http.get(
-      Uri.encodeFull("http://localhost:8082/shirts"),
+      Uri.encodeFull("http://localhost:8082/$type"),
       headers: {
         "Accept": "application/json",
       }

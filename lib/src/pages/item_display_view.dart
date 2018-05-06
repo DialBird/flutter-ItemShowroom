@@ -21,7 +21,7 @@ class _ItemDisplayViewState extends State<ItemDisplayView> {
 
   _getItems() async {
     http.Response response = await http.get(
-      Uri.encodeFull("http://localhost:8082/items"),
+      Uri.encodeFull("http://localhost:8082/shirts"),
       headers: {
         "Accept": "application/json",
       }

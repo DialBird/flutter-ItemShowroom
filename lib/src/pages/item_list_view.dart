@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:item_showroom/src/pages/item_display_view.dart';
+import 'package:item_showroom/src/pages/item_grid_display_view.dart';
 
 class ItemListView extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class ItemListView extends StatelessWidget {
         body: new TabBarView(
           children: <Widget>[
             new ItemDisplayView('shirts'),
-            new ItemDisplayView('shoes'),
+            new ItemGridDisplayView('shoes'),
             new Icon(Icons.directions_bike),
             new Icon(Icons.directions_transit),
             new Icon(Icons.directions_bike),

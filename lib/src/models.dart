@@ -1,3 +1,5 @@
+enum ItemType { shirts, shoes, pants, bags, wallets }
+
 class Item {
   final String name;
   final String imageUrl;

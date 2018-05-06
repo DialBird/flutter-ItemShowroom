@@ -16,76 +16,72 @@ class _ItemDisplayViewState extends State<ItemDisplayView> {
   @override
   void initState() {
     super.initState();
-    // _getItems();
+    _getItems();
   }
 
-  // _getItems() async {
-  //   http.Response response = await http.get(
-  //     Uri.encodeFull("http://localhost:8082/items"),
-  //     headers: {
-  //       "Accept": "application/json",
-  //     }
-  //   );
+  _getItems() async {
+    http.Response response = await http.get(
+      Uri.encodeFull("http://localhost:8082/items"),
+      headers: {
+        "Accept": "application/json",
+      }
+    );
 
-  //   List<dynamic> data = JSON.decode(response.body);
-  //   setState(() {
-  //     _items = data.map((item) => Item.fromJSON(item)).toList();
-  //   });
-  // }
+    List<dynamic> data = JSON.decode(response.body);
+    setState(() {
+      _items = data.map((item) => Item.fromJSON(item)).toList();
+    });
+  }
 
-  // Future<Null> refreshList() async {
-  //   await Future.delayed(Duration(seconds: 2));
-  //   return null;
-  // }
+  Future<Null> refreshList() async {
+    await Future.delayed(Duration(seconds: 2));
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return new Text("dsaf");
-    // return new RefreshIndicator(
-    //   child: new ListView.builder(
-    //     padding: new EdgeInsets.all(16.0),
-    //     itemCount: _items?.length,
-    //     itemBuilder: (BuildContext context, int index) {
-    //       return new _ItemCard(_items[index]);
-    //     },
-    //   ),
-    //   onRefresh: refreshList,
-    // );
+    return new RefreshIndicator(
+      child: new ListView.builder(
+        padding: new EdgeInsets.all(16.0),
+        itemCount: _items?.length,
+        itemBuilder: (BuildContext context, int index) {
+          return new _ItemCard(_items[index]);
+        },
+      ),
+      onRefresh: refreshList,
+    );
   }
 }
 
-// class _ItemCard extends StatelessWidget {
-//   final item;
+class _ItemCard extends StatelessWidget {
+  final item;
 
-//   _ItemCard(this.item);
+  _ItemCard(this.item);
 
-//   @override
-//   Widget build(BuildContext context) { 
-//     // return new Stack(
-//     //   children: <Widget>[
-//     //     new Chip(label: new Text("asdf")),
-//     //     new Card(
-//     //       child: new Column(
-//     //         children: <Widget>[
-//     //           new Image.network(item.imageUrl),
-//     //           new Text(item.name, style: TextStyle(fontSize: 24.0, fontFamily: 'Timeburner', fontWeight: FontWeight.w700)),
-//     //           new Text(item.price.toString()),
-//     //           new Text(item.description),
-//     //         ],
-//     //       ),
-//     //     ),
-//     //   ],
-//     // );
-//     return new Card(
-//       child: new Column(
-//         children: <Widget>[
-//           new Chip(label: new Text("asdf")),
-//           new Image.network(item.imageUrl),
-//           new Text(item.name, style: TextStyle(fontSize: 24.0, fontFamily: 'Timeburner', fontWeight: FontWeight.w700)),
-//           new Text(item.price.toString()),
-//           new Text(item.description),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) { 
+    return new Card(
+      child: new Stack(
+        children: <Widget>[
+          new Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              new Image.network(item.imageUrl),
+              new Text(
+                item.name,
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w700),
+                textAlign: TextAlign.center,
+              ),
+              new Text(item.description, textAlign: TextAlign.center),
+            ],
+          ),
+          new Chip(
+            backgroundColor: Colors.orange,
+            labelStyle: new TextStyle(color: Colors.white),
+            label: new Text("${item.price.toString()} yen")
+          ),
+        ],
+      ),
+    );
+  }
+}

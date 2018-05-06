@@ -1,4 +1,4 @@
-// import 'package:item_showroom/src/pages/item_list_view.dart';
+import 'package:item_showroom/src/pages/item_list_view.dart';
 import 'package:item_showroom/src/pages/settings_view.dart';
 import 'package:item_showroom/src/ui/bottom_navigation_view.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> implements BottomNavigationView
   void initState() {
     super.initState();
 
-    _bodyContent = new SettingsView();
+    _bodyContent = new ItemListView();
   }
 
   @override
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> implements BottomNavigationView
   void onTapChangeIndex(int position) {
     setState(() {
       if(position == 0) {
-        _bodyContent = new SettingsView();
+        _bodyContent = new ItemListView();
       } else {
         _bodyContent = new SettingsView();
       }

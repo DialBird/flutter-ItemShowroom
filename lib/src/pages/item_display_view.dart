@@ -34,7 +34,8 @@ class _ItemDisplayViewState extends State<ItemDisplayView> {
   }
 
   Future<Null> refreshList() async {
-    await Future.delayed(Duration(seconds: 2));
+    _getItems();
+    await Future.delayed(Duration(seconds: 1));
     return null;
   }
 
